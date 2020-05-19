@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct AvacadoView: View {
+    
+    //MARK:- Properties
+    @State private var pulsate: Bool = false
+    
     var body: some View {
         VStack {
             Spacer()
@@ -17,8 +21,14 @@ struct AvacadoView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 240, height: 240)
                 .shadow(color: Color("ColorBlackTransperantDark"), radius: 12, x: 0, y: 8)
+                .scaleEffect(self.pulsate ? 1 : 0.9)
+                .opacity(self.pulsate ? 1 : 0.9)
+                .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
+            
+            
+            
             VStack {
-                Text("Avocados")
+                Text("Avocados".uppercased())
                     .font(.system(size: 42, weight: .bold, design: .serif))
                     .foregroundColor(Color.white)
                     .padding()
@@ -45,6 +55,7 @@ Creamy, green, and full of nutrients!
                 .aspectRatio(contentMode: .fill)
         )
             .edgesIgnoringSafeArea(.all)
+            .onAppear(perform: { self.pulsate.toggle() })
     }
 }
 
@@ -57,10 +68,4 @@ struct AvacadoView_Previews: PreviewProvider {
 }
 
 
-struct AvacadoView_Preview: PreviewProvider {
-    static var previews: some View {
-        AvacadoView()
-        .previewDevice("iPad Pro (9.7-inch)")
-            .environment(\.colorScheme, .light)
-    }
-}
+
