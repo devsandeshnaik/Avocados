@@ -20,7 +20,7 @@ struct AvacadoView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 240, height: 240)
-                .shadow(color: Color("ColorBlackTransperantDark"), radius: 12, x: 0, y: 8)
+                .shadow(color: Color("ColorBlackTransparantDark"), radius: 12, x: 0, y: 8)
                 .scaleEffect(self.pulsate ? 1 : 0.9)
                 .opacity(self.pulsate ? 1 : 0.9)
                 .animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true))
@@ -32,7 +32,7 @@ struct AvacadoView: View {
                     .font(.system(size: 42, weight: .bold, design: .serif))
                     .foregroundColor(Color.white)
                     .padding()
-                    .shadow(color: Color("ColorBlackTransperantDark"), radius: 4, x: 0, y: 4)
+                    .shadow(color: Color("ColorBlackTransparantDark"), radius: 4, x: 0, y: 4)
                 
                 Text("""
 Creamy, green, and full of nutrients!
