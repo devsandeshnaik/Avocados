@@ -12,6 +12,8 @@ struct ContentView: View {
     
     //MARK:- PROPERTIES
     var headers: [Header] = headerData
+    var facts: [Fact] = factData
+    var recipes: [Recipe] = recipeData
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -27,15 +29,42 @@ struct ContentView: View {
                     }
                 } .font(.system(.title, design: .serif))
                                        .foregroundColor(Color("ColorGreenAdaptive"))
-                                       .padding(8)
                 
-                //Mark:- DISHES VIEW
+                //MARK:- DISHES VIEW
                 Text("Avocado Dishes")
                     .fontWeight(.black)
                     .modifier(TitleModifier())
                 DishesView()
                     .frame(maxWidth: 640)
+                //MARK:- AVOCADO FACTS
                 
+                Text("Avocado facts")
+                    .fontWeight(.bold)
+                    .modifier(TitleModifier())
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .top, spacing: 60) {
+                        ForEach(facts) { item in
+                            FactsView(fact: item)
+                        }
+                    }
+                    .padding(.vertical)
+                    .padding(.leading, 60)
+                    .padding(.trailing,20)
+                }
+                
+                //MARK:- RECIPE CARDS
+                Text("Avocado Recipes")
+                    .fontWeight(.bold)
+                    .modifier(TitleModifier())
+                
+                VStack(alignment: .center, spacing: 20) {
+                    ForEach(recipes) { recipe in
+                        RecipeCardView(recipe: recipe)
+                    }
+                }
+                .frame(maxWidth: 640)
+                .padding(.horizontal)
                 
                 //MARK: - FOOTER
                 VStack(alignment: .center, spacing: 20) {
@@ -68,6 +97,7 @@ struct TitleModifier: ViewModifier {
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(headers: headerData)
+        ContentView(headers: headerData, facts: factData, recipes: recipeData)
+            .previewDevice(.init(stringLiteral: "iPad Pro"))
     }
 }
